@@ -1,7 +1,7 @@
-#A singleton that knows how to make requests to the Twitter Developer Labs Recent searchtweets endpoint.
+#A singleton that knows how to make requests to the Twitter Developer Labs Recent search endpoint.
 #
 # Example usage:
-#   require_relative "../searchtweets/tweets-searchtweets.rb"
+#   require_relative "../searchtweets/tweets-search.rb"
 #
 #   oSearchClient = TweetsSearch.new()
 #   tweet_array, newest_id = oSearchClient.get_data(query["value"])
