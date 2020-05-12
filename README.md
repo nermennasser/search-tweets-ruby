@@ -4,6 +4,8 @@
 
 Welcome to the Labs branch of the Ruby search client. This branch was born from the 'master' branch that supports premium and enterprise tiers of Twitter search. This branch supports the [Labs v2 search](https://developer.twitter.com/en/docs/labs/recent-search/overview) only, and drops support for the premium and enterprise tiers. 
 
+Note: If you are looking for the original version that works with premium and enterprise versions of search, head on over to the "master" branch.
+
 ## Features
 + Supports [Labs Recent search v2](https://developer.twitter.com/en/docs/labs/recent-search/overview).
 + Command-line utility is pipeable to other tools (e.g., jq).
