@@ -1,0 +1,19 @@
+# Any corresponding command-line arguments override these. This establish default configuration details.
+# Queries are specified via command-line, or with a JSON or YAML file.
+
+#Client options.
+options:
+  #Default API request parameters.
+  max_results: 100 #For Labs this max is 100. Default is 10. 
+  tweet.fields: id,created_at,author_id,text
+  #Search client knows how to write to standard out or files.
+  #Client can also be configured to return a single JSON hash that compiles all responses. Hash can get big with 100Ks of Tweets.
+  write_mode: so  # options: json, files, so/standard/standard-out, hash --> Store Tweets in local files or print to system out?
+  out_box: ./output # Folder where retrieved data goes.
+  max_tweets_in_returned_hash: 10000
+
+#Credentials.
+auth:
+  bearer_token: AAAAAAAAAAAAAAAAAAAAAA
+
+headers:
