@@ -176,10 +176,10 @@ Here are some example commands to help you get started with the Ruby search clie
    + ```$ruby search.rb -q "spring has:media" -s "2020-05-08 06:00" -e "2020-05-09 06:00" -x 3```  
 
 + Request Tweets and receive a Ruby hash will all matching Tweets:
-  + ```$ruby search.rb --query "spring has:media" --start-time 12h --write hash
+  + ```$ruby search.rb --query "spring has:media" --start-time 12h --write hash```
 
 + Request Tweets and have the client write responses to a specified folder:
-  + ```$ruby search.rb --query "spring has:media" --start-time 12h --write files --outbox "./output"
+  + ```$ruby search.rb --query "spring has:media" --start-time 12h --write files --outbox "./output"```
 
 + Make Requests using a YAML configuration file with a custom name and stored somewhere other than the default location (./config):
   +  ```$ruby ./search.rb -c "~/configs/twitter/my_config.yaml" -q "snow has:videos -s 14d```
