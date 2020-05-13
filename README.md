@@ -11,7 +11,6 @@ Note: If you are looking for the original version that works with premium and en
 + Command-line utility is pipeable to other tools (e.g., jq).
 + Automatically handles pagination of search results with specifiable limits. This enables users to define a *study period* of interest, and the search client code will manage however many requests are required to transverse that period, up to 100 Tweets at a time. 
 + By default, the script writes Tweets to standard out, and can also write to files or return either a hash or JSON string.
-+ Delivers a stream of data to the user for low in-memory requirements.
 + Flexible usage within a Ruby program.
 + Supports "polling" use cases.  
 + **Note:** the Labs Recent search endpoint *does not* support the ```counts``` endpoint. Future versions of search endpoints will.
@@ -73,7 +72,7 @@ Four fundamental steps need to be taken to start using this search client:
 2) Obtain credentials for authenticating with the search endpoint. You'll need to create a Twitter App and generate a application/consumer key and secret. You can configure the scripts with either the consumer key and secret tokens or a Bearer Token that you have generated. (The Labs Recent search endpoint uses Bearer Token authentication. If you use just the key and secret, the search client will generate the Bearer Token.) For more information, see our authentication documentation [HERE](https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0).
 3) Get this Ruby app running in your environment: 
 + Clone respository. 
-+ Get gems installed with ```bundle install```. See project Gemfile. TNeed some basic gems like 'json' and 'yaml'. Test it out by running ```$ruby search.rb -h```. You should see a help menu. 
++ Get gems installed with ```bundle install```. See project Gemfile. The client uses some basic gems like 'json' and 'yaml'. Test it out by running ```$ruby scripts/search.rb -h```. You should see a help menu. 
 4) Configure client. See below for more details. 
 5) Use command-line arguments to start making search requests (see examples below).
 
@@ -81,12 +80,12 @@ Four fundamental steps need to be taken to start using this search client:
 
 + Labs Recent search supports queries up to 512 characters long.
   + See our [guide on creating search queries](https://developer.twitter.com/en/docs/labs/recent-search/guides/search-queries).
-+ If not request start and end times are specified, the endpoint defaults to that last 7 days, starting with the most recent Tweets, and paginates backwards through time.  
-+ For more information on the search API that this client exercises, see our [API Reference[(https://developer.twitter.com/en/docs/labs/recent-search/api-reference/get-recent-search).
++ If not request start and end times are specified, the endpoint defaults to that last 7 days, starting with the most recent Tweets, and paginating backwards through time.  
++ For more information on the search endpoint that this client exercises, see our [API Reference[(https://developer.twitter.com/en/docs/labs/recent-search/api-reference/get-recent-search).
 
 ### Setting credentials <a id="credentials" class="tall"></a>
 
-Twitter endpoint credentials can be configured as environmental variables or set up n the ```./config/.config.yaml``` YAML file. The search client first checks for environmental variables, and if not found there, it then looks in the YAML file. 
+Twitter endpoint credentials can be configured as environmental variables or set up in the ```./config/.config.yaml``` YAML file. The search client first checks for environmental variables, and if not found there, it then looks in the YAML file. 
 
 #### Environmental variables
 
