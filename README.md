@@ -2,19 +2,19 @@
 
 # Ruby client for Labs Recent search endpoint
 
-Welcome to the Labs branch of the Ruby search client. This branch was born from the 'master' branch that supports premium and enterprise tiers of Twitter search. This branch supports the [Labs v2 search](https://developer.twitter.com/en/docs/labs/recent-search/overview) only, and drops support for the premium and enterprise tiers. 
+Welcome to the 'labs' branch of the Ruby search client. This branch was born from the 'master' branch that supports premium and enterprise tiers of Twitter search. This branch supports the [Labs v2 search](https://developer.twitter.com/en/docs/labs/recent-search/overview) only, and drops support for the premium and enterprise tiers. 
 
 Note: If you are looking for the original version that works with premium and enterprise versions of search, head on over to the "master" branch.
 
 ## Features
 + Supports [Labs Recent search v2](https://developer.twitter.com/en/docs/labs/recent-search/overview).
 + Command-line utility is pipeable to other tools (e.g., jq).
-+ Automatically handles pagination of search results with specifiable limits.
++ Automatically handles pagination of search results with specifiable limits. This enables users to define a *study period* of interest, and the search client code will manage however many requests are required to transverse that period, up to 100 Tweets at a time. 
 + By default, the script writes Tweets to standard out, and can also write to files or return either a hash or JSON string.
 + Delivers a stream of data to the user for low in-memory requirements.
 + Flexible usage within a Ruby program.
 + Supports "polling" use cases.  
-+ Note that the Labs Recent search endpoint *does not* support the ```counts``` endpoint.
++ **Note:** the Labs Recent search endpoint *does not* support the ```counts``` endpoint. Future versions of search endpoints will.
 
 ----------------
 Jump to:
@@ -26,7 +26,7 @@ Jump to:
 + [Example script commands](#example-calls)
 + [Running in 'polling' mode](#polling)
 + [Specifying search period start and end times](#specifying-times)
-+ [Setting up query batches with query files](#queries)
++ [Automating multiple queries](#queries)
 --------------------
 
 ## Overview <a id="overview" class="tall"></a>
@@ -119,7 +119,7 @@ auth:
 
 ## Command-line arguments <a id="arguments" class="tall">&nbsp;</a>
 
-Once you have the configuration file set up, you can start making requests. 
+The ```search.rb``` and ```polling.rb``` example scripts support the following commands.
 
 ### Command-line options for ```search.rb``` script:
 
@@ -230,28 +230,27 @@ This client uses the 'start' and 'end' aliases for ```start_time``` and ```end_t
 
 Start ```-s``` and end ```-e``` parameters can be specified in a variety of ways:
 
-+ YYYYMMDDHHmm (UTC)
-	+ -s 202002010700 
-	+ -e 202002010700 
-
-+ "YYYY-MM-DDTHH:MM:SS.000Z" (ISO 8061 timestamps as used by Twitter, in UTC)
-	+ -s 2019-11-20T15:39:31.000Z --> Tweets posted since 2017-11-20 22:00:00 MST .
-
 + A combination of an integer and a character indicating "days" (#d), "hours" (#h) or "minutes" (#m). Some examples:
 	+ -s 5d --> Start five days ago.
 	+ -s 6d -e 2d --> Start 6 days ago and end 2 days ago.
 	+ -s 6h --> Start six hours ago (i.e. Tweets from the last six hours).
 
++ YYYYMMDDHHmm (UTC)
+	+ -s 202005170700 
+	+ -e 202005180700 
+
 + "YYYY-MM-DD HH:mm" (UTC, use double-quotes please).
-	+ -s "2019-11-04 07:00" -e "2019-11-07 07:00" --> Tweets from between 2017-11-04 and 2017-11-06 MST.
-	
-	
-	
-## Query files <a id="queries" class="tall">&nbsp;</a>
+	+ -s "2020-05-17 06:00" -e "2020-05-19 06:00" --> Tweets from between 2020-05-17 and 2020-05-19 MDT.
 
-Search endpoint requests are based on a single query. When making requests for a query, that rule is passed in via the command-line with the ```-q``` argument. 
++ "YYYY-MM-DDTHH:MM:SS.000Z" (ISO 8061 timestamps as used by Twitter, in UTC).
+	+ -s 2020-05-17T15:00:00.000Z --> Tweets posted since 2020-05-17 09:00:00 MDT .	
+	
+	
+## Automating multiple queries <a id="queries" class="tall">&nbsp;</a>
 
-However, this client supports making requests with multiple queries, managing the data retrieval for each individual rule. Multiple queries can be specified in JSON or YAML files.  Below is an example of each. 
+The Search endpoint works with a single query at a time. This client supports making requests with multiple queries, managing the data retrieval for each individual rule. 
+
+Multiple queries can be specified in JSON or YAML files.  Below is an example of each. 
 
 **JSON query file:
 
