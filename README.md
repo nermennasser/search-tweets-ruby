@@ -36,7 +36,7 @@ These scripts are command-line driven and support the following features:
 
 + Supports flexible ways to specify the search *study period*. Your study period may be a week, and the example script manages the multiple requests needed to span that period. E.g., ```-s 7d``` specifies the past 7 days. ```-s 12h``` specifies 12 hours, and ```-s 90m``` specifies 90 minutes. Other patterns such as ```YYYY-MM-DD HH:mm```, standard Twitter ISO timestamps, and the legacy 'Gnip' ```YYYYMMDDhhmm``` pattern are also supported. If no ```start-time``` and ```end-time``` details are included, the endpoint defaults to the previous seven days, starting with the most recent Tweets, then going back through time one page at a time. 
 
-+ Supports a "polling" ```-p``` mode. Polling mode is a pattern where a request is made on an internal (defaults to every 10 minutes) Both scripts support polling: 
++ Supports a "polling" ```-p``` mode. Polling mode is a pattern where a request is made on an interval (defaults to every 10 minutes) Both scripts support polling: 
   + search.rb: This script is designed to make a set of requests and quit. When in 'polling' mode, the script leaves a 'breadcrumb' files with the 'newest' Tweet ID in it. The next time the script runs, it references this 'newest_id.txt' file and asks for Tweets posted since that one, then quits. Designed to be entered as a crontab job.  
   + polling.rb: This script is based on an endless loop that makes requests for new Tweets on an ```--poll-interval``` (in minutes) command-line argument. 
 
@@ -85,7 +85,7 @@ Four fundamental steps need to be taken to start using this search client:
 
 ### Setting credentials <a id="credentials" class="tall"></a>
 
-Twitter endpoint credentials can be configured as environmental variables or set up in the ```./config/.config.yaml``` YAML file. The search client first checks for environmental variables, and if not found there, it then looks in the YAML file. 
+Twitter endpoint credentials can be configured as *environmental variables* or set up in the ```./config/.config.yaml``` YAML file. The search client first checks for environmental variables, and if not found there, it then looks in the YAML file. 
 
 #### Environmental variables
 
@@ -221,7 +221,7 @@ The ```polling.rb``` script will continue to run until the script is stopped.
 
 ## Specifying search period start and end times <a id="specifying-times" class="tall"></a>
 
-By default the Labs recent search endpoint will search from the previous 7 days. However, most search requests will have a more specific period of interest. With the Labs search endpont the start of the search period is specified with the ```start_time``` parameter, and the end with ```end_timee``` request parameter. 
+By default the Labs recent search endpoint will search from the previous 7 days. However, most search requests will have a more specific period of interest. With the Labs search endpont the start of the search period is specified with the ```start_time``` parameter, and the end with ```end_time``` request parameter. 
 
 Both timestamps assume the UTC timezone. If you are making search requests based on a local timezone, you'll need to convert these timestamps to UTC. These search APIs require these timestamps to have the 'YYYY-MM-DDTHH:mm:ssZ' format (ISO 8601/RFC 3339). As that format suggests, search request periods can have a second granularity. 
 
