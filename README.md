@@ -136,7 +136,7 @@ Usage: search [options]
     -i, --since-id SINCEID           All matching Tweets since this Tweet ID was created (exclusive).
     -u, --until-id UNTILID           All matching Tweets up until this ID was created (exclusive).
     -m, --max MAXRESULTS             Specify the maximum amount of Tweets results per response (maps to "max_results"). 10 to 100, defaults to 10.
-    -f, --format FORMAT              Specify the format for Tweet JSON, defaults to "default".
+    -f, --fields FIELDS              Tweet attributes of interest (comma-delimited) Defaults to "id,created_at,author_id,text". See https://developer.twitter.com/en/docs/labs/recent-search/api-reference/get-recent-search for details on available fields.
     -x, --exit EXIT                  Specify the maximum amount of requests to make. "Exit app after this many requests."
     -w, --write WRITE                'files', 'standard-out' (or 'so' or 'standard').
     -o, --outbox OUTBOX              Optional. Triggers the generation of files and where to write them.
@@ -157,7 +157,7 @@ Usage: polling [options]
     -i, --since_id SINCEID           All matching Tweets since this Tweet ID was created (exclusive).
     -p, --poll-interval POLLINTERVAL Polling interval in minutes. Default is 5 minutes.
     -m, --max MAXRESULTS             Specify the maximum amount of Tweets results per response (maps to "max_results"). 10 to 100, defaults to 10.
-    -f, --fields FIELDS              Specify the format for Tweet JSON, defaults to "id,text".
+    -f, --fields FIELDS              Tweet attributes of interest (comma-delimited) Defaults to "id,created_at,author_id,text". See https://developer.twitter.com/en/docs/labs/recent-search/api-reference/get-recent-search for details on available fields.
     -x, --exit EXIT                  Specify the maximum amount of requests to make. "Exit app after this many requests."
     -w, --write WRITE                'files', 'standard-out' (or 'so' or 'standard').
     -o, --outbox OUTBOX              Optional. Triggers the generation of files and where to write them.
