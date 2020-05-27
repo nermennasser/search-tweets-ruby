@@ -12,8 +12,10 @@ options:
   out_box: ./output # Folder where retrieved data goes.
   max_tweets_in_returned_hash: 10000
 
-#Credentials.
+#Credentials. Insert your Consumer Key and Secret, OR your Bearer Token, below.
 auth:
+  consumer_key: PutYourConsumerKeyHere
+  consumer_secret: PutYourConsumerSecretHere
   bearer_token: AAAAAAAAAAAAAAAAAAAAAA
 
 headers:
