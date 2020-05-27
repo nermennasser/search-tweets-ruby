@@ -131,7 +131,7 @@ def set_app_configuration(oSearchTweets, exit_after, write, outbox, tag, verbose
     if !write.nil?
         oSearchTweets.write_mode = write
 
-        if oSearchTweets.write_mode == "standard_out" or oSearch.write_mode == "standard" or oSearch.write_mode == "so"
+        if oSearchTweets.write_mode == "standard_out" or oSearchTweets.write_mode == "standard" or oSearchTweets.write_mode == "so"
             oSearchTweets.write_mode = "standard_out"
         end
     end
@@ -160,7 +160,6 @@ def request_summary(query, start_time, end_time, since_id, until_id)
         elsif end_time.nil?
             time_span = "#{start_time} to now.  "
         end
-
 
         puts "Retrieving data from #{time_span}..."
 
@@ -198,7 +197,7 @@ if __FILE__ == $0  #This script code is executed when running this file.
         o.on('-m MAXRESULTS', '--max', 'Specify the maximum amount of Tweets results per response (maps to "max_results"). 10 to 100, defaults to 10.') {|max_results| $max_results = max_results}  #... as in look before you leap.
 
         #o.on('-f FORMAT', '--format', 'Specify the format for Tweet JSON, defaults to "default".') {|format| $format = format}
-        o.on('-f FIELDS', '--fields', 'Tweet attributes of interest (comma-delimited) Defaults to "id,created_at,author_id,text".') {|fields| $fields = fields}
+        o.on('-f FIELDS', '--fields', 'Tweet attributes of interest (comma-delimited) Defaults to "id,created_at,author_id,text". See https://developer.twitter.com/en/docs/labs/recent-search/api-reference/get-recent-search for details on available fields.') {|fields| $fields = fields}
 
         o.on('-x EXIT', '--exit', 'Specify the maximum amount of requests to make. "Exit app after this many requests."') {|exit_after| $exit_after = exit_after}
 
