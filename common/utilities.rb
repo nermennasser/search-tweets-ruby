@@ -75,19 +75,19 @@ module Utilities
 
 		#Handle minute notation.
 		if input.downcase[-1] == "m"
-			date = now - (60 * input[0..-2].to_f)
+			date = now.utc - (60 * input[0..-2].to_f)
 		  return get_date_ISO_string(date)
 		end
 
 		#Handle hour notation.
 		if input.downcase[-1] == "h"
-			date = now - (60 * 60 * input[0..-2].to_f)
+			date = now.utc - (60 * 60 * input[0..-2].to_f)
       return get_date_ISO_string(date)
 		end
 
 		#Handle day notation.
 		if input.downcase[-1] == "d"
-			date = now - (24 * 60 * 60 * input[0..-2].to_f)
+			date = now.utc - (24 * 60 * 60 * input[0..-2].to_f)
 			return get_date_ISO_string(date)
 		end
 
