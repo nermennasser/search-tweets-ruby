@@ -88,6 +88,10 @@ module Utilities
 		#Handle day notation.
 		if input.downcase[-1] == "d"
 			date = now.utc - (24 * 60 * 60 * input[0..-2].to_f)
+			#Double check if 7 days were passed in, and if so, add 60 seconds
+			if input[0..-2] == '7'
+				date = date + 60
+			end
 			return get_date_ISO_string(date)
 		end
 
